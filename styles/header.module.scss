@@ -1,0 +1,46 @@
+@import './variables';
+
+
+.container{
+    width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.logoContainer{
+    height: 100%;
+    @media only screen and (max-width: $mobileView) {
+        
+        height: 54px;
+        width: 54px;
+    
+    }   
+}
+
+
+.list{
+    display: flex;
+    list-style: none;
+    font-size: 1.5rem;
+
+
+    li{
+        margin: 0 30px;
+        
+        &:hover{
+            border-bottom: black 2px solid;
+        }
+    }
+
+
+    @media only screen and (max-width: $mobileView) {
+        font-size: 1rem;
+
+        li{
+            margin: 0 10px;
+        }
+    }
+}

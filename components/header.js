@@ -8,14 +8,6 @@ import Image from 'next/image'
 function Header() {
     return (
         <div className={styles.container}>
-            <div className={styles.logoContainer}>
-                    <Image 
-                    src="/ballLogo.png"  
-                    width={92} 
-                    height={92} 
-                    alt="today's top matches football"
-                    />
-             </div>
             <nav>
                 <ul className={styles.list}>
                     <li>

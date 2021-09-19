@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+.container{
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    @media only screen  and (max-width: $mobileView) {
+        width: 100%;
+    }
+}

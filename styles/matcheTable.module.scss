@@ -7,6 +7,22 @@
     padding: 20px 0;
 
     @media only screen  and (max-width: $mobileView) {
-        width: 100%;
+        width: 90%;
     }
+}
+
+
+.ligaTitle{
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+#nomatch{
+    text-align: center;
+}
+
+
+.gameTime{
+    text-align: center;
 }

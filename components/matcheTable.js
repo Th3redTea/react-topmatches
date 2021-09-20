@@ -13,44 +13,89 @@ const key = "a0304240-a167-11eb-a64f-81eb7badeea4" //free API key.
 var date_from = String(yyyy + '-' + mm + '-' + dd)
 var date_to =  String(yyyy + '-' + mm + '-' + Number(dd+1))
 
-function MatcheTable() {
+
+export default function MatcheTable() {
+
+  const [premierLeagueMatches, setPL] = useState([])
+  const [laLigaMatches, setLaLiga] = useState([])
+
+  useEffect( async () => {
+
+    const PLreq = await fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?apikey=${key}&season_id=1980&date_from=${date_from}&date_to=${date_to}`)
+    const PLrespn = await PLreq.json();
+    const PLdata = PLrespn.data
+
+    const ligareq = await fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?apikey=${key}&season_id=2029&date_from=${date_from}&date_to=${date_to}`)
+    const ligarespn = await ligareq.json();
+    const ligaData = ligarespn.data
 
 
-    // const [teamInfo, setTeamInfo] = useState([])
-    const [todaysMatches, setData] = useState([])
-
-  
-    useEffect( async () => {
-  
-      const req = await fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?apikey=${key}&season_id=1980&date_from=${date_from}&date_to=${date_to}`)
-      const respn = await req.json();
-      setData(respn.data)
-      
-    }, [])
     
+    if(PLdata && PLdata.length !== 0){
+      setPL(PLdata)
+    } 
+    
+    if(ligaData && ligaData.length !== 0){
+      setLaLiga(ligaData)
+    } else {
+        return
+      }
+  },[])
 
-    return(
-        <div className={styles.container}>
+  console.log(premierLeagueMatches)
+
+  return(
+      <div key={Math.random() * 100} className={styles.container}>
+        <h1 className={styles.ligaTitle}>Premier league Matches</h1>
+
+      {
+         premierLeagueMatches.map(game => {
+                          
+              return(
+                <>
+
+                  <p className={styles.gameTime}>{game.match_start}</p>
+                  <Game 
+                  id={game.match_id}
+                  AwayteamLogo={game.away_team.logo}
+                  AwayteamName={game.away_team.name}
+                  AwayTeamScore={game.stats.away_score}
+          
+                  HomeTeamScore={game.stats.home_score}
+                  HometeamName={game.home_team.name}
+                  HometeamLogo={game.home_team.logo}
+              
+                  />
+              </>
+              )
+        })
+      }  
+
+            <h1 className={styles.ligaTitle}>Laliga Matches</h1>
+          
+          
         {
-            todaysMatches.map(game => {
+          laLigaMatches.map(game => {
                      
-                    return(
-                    <Game 
-                    id={game.match_id}
-                    AwayteamLogo={game.away_team.logo}
-                    AwayteamName={game.away_team.name}
-                    AwayTeamScore={game.stats.away_score}
-            
-                    HomeTeamScore={game.stats.home_score}
-                    HometeamName={game.home_team.name}
-                    HometeamLogo={game.home_team.logo}
+                        return(
+                          <>
+                        <p className={styles.gameTime}>{game.match_start}</p>
+                        <Game 
+                        id={game.match_id}
+                        AwayteamLogo={game.away_team.logo}
+                        AwayteamName={game.away_team.name}
+                        AwayTeamScore={game.stats.away_score}
                 
-                />)
-            })
+                        HomeTeamScore={game.stats.home_score}
+                        HometeamName={game.home_team.name}
+                        HometeamLogo={game.home_team.logo}
+                    
+                    />
+                    </>
+                    )
+                })
         }
         </div>  
     )
-  
-  }
 
-export default MatcheTable
+}

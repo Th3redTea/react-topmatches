@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
-import Header from '../components/header'
+import Header from '../components/Header'
 import MatcheTable from '../components/matcheTable'
 
 export default function Home() {

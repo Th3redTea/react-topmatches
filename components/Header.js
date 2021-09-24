@@ -14,7 +14,7 @@ function Header() {
                         <Link href="/"><a>Home</a></Link>
                     </li>
                     <li>
-                        <Link href="/allgames"><a>All matches</a></Link>
+                        <Link href="/standings/laliga"><a>Standing</a></Link>
                     </li>
                 </ul>
             </nav>

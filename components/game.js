@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../styles/game.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function Game(
     {
@@ -10,7 +11,10 @@ function Game(
     AwayTeamScore,
     HomeTeamScore,
     HometeamName,
-    HometeamLogo
+    HometeamLogo,
+    awayTeamId,
+    homeTeamId
+
     }
     ) {
     return (
@@ -23,10 +27,12 @@ function Game(
                 height={45}
                 />
             </div>
+                <Link href={'/teams/'+awayTeamId}>
+                    <a className={styles.teamName}>
+                        {AwayteamName}
+                    </a>
+                </Link>
 
-                <p className={styles.teamName}>
-                    {AwayteamName}
-                </p>
 
             <div className={styles.result}>
                 <span>
@@ -38,9 +44,11 @@ function Game(
                 </span>
             </div>    
 
-            <p className={styles.teamName}>
-                    {HometeamName}
-            </p>
+            <Link href={'/teams/'+homeTeamId}>
+                    <a className={styles.teamName}>
+                        {HometeamName}
+                    </a>
+                </Link>
             <div className={styles.logo}>
                 <Image 
                 src={HometeamLogo} 

@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.sportdataapi.com'],
+    domains: ['media.api-sports.io'],
   },
 }

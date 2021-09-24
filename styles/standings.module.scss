@@ -1,0 +1,29 @@
+@import './variables';
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+
+.laliga, .premierLeague{
+    border: black 2px solid;
+    font-weight: 600;
+    width: 100%;
+    background-color: white;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+.Team{
+    border: black 2px solid;
+    font-weight: 600;
+    width: 100%;
+    background-color: white;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}

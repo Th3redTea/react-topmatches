@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/standings.module.scss'
 import Image from 'next/image'
-import { key } from '../../components/matcheTable'
+import { key } from '../../components/MatcheTable'
 
 
 function Team({

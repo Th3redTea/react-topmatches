@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/matcheTable.module.scss'
 import Game from './game';
+import { isMobile } from 'react-device-detect';
 import Link from 'next/link';
 
 

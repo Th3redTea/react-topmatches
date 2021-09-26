@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
     
 }
 
@@ -29,10 +30,8 @@
 
     li{
         margin: 0 30px;
-        
-        &:hover{
-            border-bottom: black 2px solid;
-        }
+        cursor: pointer;
+
     }
 
 
@@ -43,4 +42,31 @@
             margin: 0 10px;
         }
     }
+}
+
+
+.standing{
+    height: 100px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 1.2rem;
+    padding: 20px;
+    position: absolute;
+    top: 30px;
+    -webkit-box-shadow: 0px 0px 15px 2px #000000; 
+    box-shadow: 0px 0px 15px 2px #000000;
+    
+    
+    a{
+        margin: 5px 0;
+        
+        border-bottom: rgb(180, 180, 180) 2px solid;
+    }
+}
+
+
+.hidden{
+    opacity: 0;
 }

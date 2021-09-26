@@ -1,0 +1,13 @@
+
+
+
+.heroImageContainer{
+    height: 400px;
+    width: 100%;
+    background-image: url('../public/hero-image.png');
+    background-color: blue;
+    position: absolute;
+    top: -35px;
+    z-index: -1;
+
+}

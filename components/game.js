@@ -23,8 +23,8 @@ function Game(
                 <Image 
                 src={AwayteamLogo} 
                 alt={AwayteamName}
-                width={45}
-                height={45}
+                width={66}
+                height={66}
                 />
             </div>
                 <Link href={'/teams/'+awayTeamId}>
@@ -34,7 +34,7 @@ function Game(
                 </Link>
 
 
-            <div className={styles.result}>
+            <span className={styles.result}>
                 <span>
                     {AwayTeamScore}
                 </span>
@@ -42,7 +42,7 @@ function Game(
                 <span>
                     {HomeTeamScore}
                 </span>
-            </div>    
+            </span>    
 
             <Link href={'/teams/'+homeTeamId}>
                     <a className={styles.teamName}>
@@ -53,8 +53,8 @@ function Game(
                 <Image 
                 src={HometeamLogo} 
                 alt={HometeamName}
-                width={45}
-                height={45}
+                width={66}
+                height={66}
                 />
             </div>
         </div>

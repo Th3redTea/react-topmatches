@@ -61,72 +61,82 @@ export default function MatcheTable() {
     },[])
     
 
-  
+   const LigaRendering = () => {
+
+
+    laLigaMatches.map((game, indx) => {
+
+      const date = new Date(game.fixture.date)
+       
+      const hours = date.getHours()
+      const minuts = date.getMinutes()
+      return(
+        <div key={game.fixture.id}>
+              <p className={styles.gameTime}>{hours}:{minuts == 0 ? "00" : minuts}</p>
+              <Game 
+              awayTeamId={game.teams.away.id}
+              homeTeamId={game.teams.home.id}
+              id={game.fixture.id}
+              AwayteamLogo={game.teams.away.logo}
+              AwayteamName={game.teams.away.name}
+              AwayTeamScore={game.goals.away == null ? game.fixture.status.short : game.goals.away}
+      
+              HomeTeamScore={game.goals.home == null ? game.fixture.status.short : game.goals.home}
+              HometeamName={game.teams.home.name}
+              HometeamLogo={game.teams.home.logo}
+
+              />
+
+          </div>
+          )
+        })
+   }
+
+
+   const PLrendering = () => {
+
+    premierLeagueMatches.map((game, indx) => {
+
+      const date = new Date(game.fixture.date)
+       
+      const hours = date.getHours()
+      const minuts = date.getMinutes()
+
+      return(
+        <div key={game.fixture.id}>
+              <p className={styles.gameTime}>{hours}:{minuts == 0 ? "00" : minuts}</p>
+              <Game 
+              awayTeamId={game.teams.away.id}
+              homeTeamId={game.teams.home.id}
+              id={game.fixture.id}
+              AwayteamLogo={game.teams.away.logo}
+              AwayteamName={game.teams.away.name}
+              AwayTeamScore={game.goals.away == null ? game.fixture.status.short : game.goals.away}
+      
+              HomeTeamScore={game.goals.home == null ? game.fixture.status.short : game.goals.home}
+              HometeamName={game.teams.home.name}
+              HometeamLogo={game.teams.home.logo}
+          
+              />
+          </div>
+          )
+        })
+
+    
+   }
 
   
   return(
     <div className={styles.container}>
         <h1 className={styles.ligaTitle}>Laliga Matches</h1>
 
-      {
-        
-        laLigaMatches.map((game, indx) => {
-
-          const date = new Date(game.fixture.date)
-           
-          const hours = date.getHours()
-          const minuts = date.getMinutes()
-          return(
-            <div key={game.fixture.id}>
-                  <p className={styles.gameTime}>{hours}:{minuts == 0 ? "00" : minuts}</p>
-                  <Game 
-                  awayTeamId={game.teams.away.id}
-                  homeTeamId={game.teams.home.id}
-                  id={game.fixture.id}
-                  AwayteamLogo={game.teams.away.logo}
-                  AwayteamName={game.teams.away.name}
-                  AwayTeamScore={game.goals.away == null ? game.fixture.status.short : game.goals.away}
-          
-                  HomeTeamScore={game.goals.home == null ? game.fixture.status.short : game.goals.home}
-                  HometeamName={game.teams.home.name}
-                  HometeamLogo={game.teams.home.logo}
-              
-                  />
-              </div>
-              )
-            })
-          }  
+          {laLigaMatches.length !== 0 ? <LigaRendering /> : <h1 style={{color: '#e63946'}}  id={styles.nomatch}>No Laliga games today 😏</h1>}
 
           <h1 className={styles.ligaTitle}>Premier league Matches</h1>
           
-          
-        {
-        premierLeagueMatches.map((game, indx) => {
+          {premierLeagueMatches.length !== 0 ? <PLrendering /> : <h1 style={{color: '#e63946'}}  id={styles.nomatch}>No Premier league games today 😏</h1>}
 
-          const date = new Date(game.fixture.date)
-           
-          const hours = date.getHours()
-          const minuts = date.getMinutes()
-          return(
-            <div key={game.fixture.id}>
-                  <p className={styles.gameTime}>{hours}:{minuts == 0 ? "00" : minuts}</p>
-                  <Game 
-                  awayTeamId={game.teams.away.id}
-                  homeTeamId={game.teams.home.id}
-                  id={game.fixture.id}
-                  AwayteamLogo={game.teams.away.logo}
-                  AwayteamName={game.teams.away.name}
-                  AwayTeamScore={game.goals.away == null ? game.fixture.status.short : game.goals.away}
-          
-                  HomeTeamScore={game.goals.home == null ? game.fixture.status.short : game.goals.home}
-                  HometeamName={game.teams.home.name}
-                  HometeamLogo={game.teams.home.logo}
-              
-                  />
-              </div>
-              )
-            })
-          }   
+
         </div>  
      )
 

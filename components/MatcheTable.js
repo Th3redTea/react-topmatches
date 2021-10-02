@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/matcheTable.module.scss'
 import Game from './game';
-import { isMobile } from 'react-device-detect';
 import Link from 'next/link';
 
 
@@ -13,10 +12,23 @@ var yyyy = today.getFullYear();
 
 export const key = "b791e2d21fmsh2940fc670d60516p1654e6jsn05467723ece9" //free API key.
 var date_from = String(yyyy + '-' + mm + '-' + dd)
-var date_to =  String(yyyy + '-' + mm + '-' + Number(dd+1))
+// var date_to =  String(yyyy + '-' + mm + '-' + Number(dd+1))
 
 
 
+function formatDate(date) {
+  var d = new Date(date),
+  month = '' + (d.getMonth() + 1),
+  day = '' + d.getDate(),
+  year = d.getFullYear();
+  
+  if (month.length < 2) 
+  month = '0' + month;
+  if (day.length < 2) 
+  day = '0' + day;
+  
+  return [year, month, day].join('-');
+}
 
 
 
@@ -28,7 +40,7 @@ export default function MatcheTable() {
   useEffect( async () => {
 
 
-      const liga = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date_from}&league=140&season=2021`, {
+      const liga = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${formatDate(date_from)}&league=140&season=2021`, {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
@@ -47,7 +59,7 @@ export default function MatcheTable() {
     useEffect( async () => {
 
 
-      const PLreq = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${date_from}&league=39&season=2021`, {
+      const PLreq = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${formatDate(date_from)}&league=39&season=2021`, {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
@@ -57,11 +69,12 @@ export default function MatcheTable() {
       const PLrespn = await PLreq.json();
       
       setPL(PLrespn.response)
+      console.log(PLrespn.response)
       
     },[])
     
 
-   const LigaRendering = () => {
+   const LigaRendering = () => (
 
 
     laLigaMatches.map((game, indx) => {
@@ -90,10 +103,11 @@ export default function MatcheTable() {
           </div>
           )
         })
-   }
+  )
 
 
-   const PLrendering = () => {
+
+   const PLrendering = () => (
 
     premierLeagueMatches.map((game, indx) => {
 
@@ -123,7 +137,7 @@ export default function MatcheTable() {
         })
 
     
-   }
+   )
 
   
   return(
@@ -131,6 +145,7 @@ export default function MatcheTable() {
         <h1 className={styles.ligaTitle}>Laliga Matches</h1>
 
           {laLigaMatches.length !== 0 ? <LigaRendering /> : <h1 style={{color: '#e63946'}}  id={styles.nomatch}>No Laliga games today 😏</h1>}
+          
 
           <h1 className={styles.ligaTitle}>Premier league Matches</h1>
           

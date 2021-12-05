@@ -39,7 +39,7 @@ export default function MatcheTable() {
 
   useEffect( async () => {
 
-
+      const abortController = new AbortController();
       const liga = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${formatDate(date_from)}&league=140&season=2021`, {
         "method": "GET",
         "headers": {
@@ -50,6 +50,10 @@ export default function MatcheTable() {
       const ligaData = await liga.json();
       
       setLaLiga(ligaData.response)
+
+      return () => {
+        return abortController.abort();
+      }
       
     },[])
 
@@ -58,7 +62,7 @@ export default function MatcheTable() {
 
     useEffect( async () => {
 
-
+      const abortController = new AbortController();
       const PLreq = await fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?date=${formatDate(date_from)}&league=39&season=2021`, {
         "method": "GET",
         "headers": {
@@ -69,8 +73,9 @@ export default function MatcheTable() {
       const PLrespn = await PLreq.json();
       
       setPL(PLrespn.response)
-      console.log(PLrespn.response)
-      
+      return () => {
+        return abortController.abort();
+      }      
     },[])
     
 
